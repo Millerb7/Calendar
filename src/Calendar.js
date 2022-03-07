@@ -22,7 +22,7 @@ class entry {
   }
 }
 
-const conglomerateEntries = (date) => {
+const gatherEntries = () => {
   const entries = [];
   // supposed to query to db for all necessary incidents based on date 
 
@@ -50,20 +50,6 @@ const conglomerateEntries = (date) => {
   return entries;
 }
 
-const displayInterval = (date) => {
-  let disp = conglomerateEntries(date);
-
-  return (
-<div id="interval_display">
-    {disp.map((entry) => (
-      <div>
-        <p>{entry.id}</p>
-        <p>{entry.incident}</p>
-      </div>
-    ))}
-  </div>);
-};
-
 function Calendar() {
   
 
@@ -76,7 +62,14 @@ function Calendar() {
           <h3>{months[this.state.date.getMonth()]}, {this.state.date.getFullYear}</h3>
           <button id="decrement_time" className="change_interval" onClick={() => {console.log('increment'); this.setState({date: this.state.date.setMonth(this.state.getMonth()+1) })}}>)</button>
         </div>
-        {displayInterval(this.state.date)}
+        <div id="interval_display">
+            {gatherEntries.map((entry) => (
+            <div>
+                <p>{entry.id}</p>
+                <p>{entry.incident}</p>
+            </div>
+            ))}
+        </div>
       </div>
     </div>
   );
