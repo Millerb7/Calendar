@@ -1,14 +1,7 @@
 import './App.css';
 
-// creates a date for the current moment
-
 // array of month names since getMonth() gives the number
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-this.state = {
-    date: new Date().toLocaleString()
-  };
-
-  console.log(this.state.date);
 
 // this is to make objects to replicate a db object
 class entry {
@@ -22,7 +15,7 @@ class entry {
   }
 }
 
-const gatherEntries = () => {
+const gatherEntries = (date) => {
   const entries = [];
   // supposed to query to db for all necessary incidents based on date 
 
@@ -50,20 +43,16 @@ const gatherEntries = () => {
   return entries;
 }
 
-function Calendar() {
-  
-
+function Calendar(props) {
   return (
-    <div className="App">
-      <h1 className="App-logo">beep beep</h1>
       <div id="calendar">
         <div id="interval_selection">
-          <button id="decrement_time" className="change_interval" onClick={() => {console.log('decrement'); this.setState({ date: this.state.date.setMonth(this.state.getMonth()-1) })}}>(</button>
-          <h3>{months[this.state.date.getMonth()]}, {this.state.date.getFullYear}</h3>
-          <button id="decrement_time" className="change_interval" onClick={() => {console.log('increment'); this.setState({date: this.state.date.setMonth(this.state.getMonth()+1) })}}>)</button>
+          <button id="decrement_time" className="change_interval" onClick={() => {console.log('decrement');}}>(</button>
+          <h3>{months[props.date.getMonth()]}, {props.date.getFullYear()}</h3>
+          <button id="decrement_time" className="change_interval" onClick={() => {console.log('increment');}}>)</button>
         </div>
         <div id="interval_display">
-            {gatherEntries.map((entry) => (
+            {gatherEntries(props.date).map((entry) => (
             <div>
                 <p>{entry.id}</p>
                 <p>{entry.incident}</p>
@@ -71,7 +60,6 @@ function Calendar() {
             ))}
         </div>
       </div>
-    </div>
   );
 }
 

@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="App-logo">beep beep</h1>
-      <Calendar />
+      <Calendar date={new Date()}/>
     </div>
   );
 }
