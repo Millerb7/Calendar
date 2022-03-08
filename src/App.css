@@ -46,13 +46,14 @@
   justify-content: center;
 }
 
-#calendar div {
+#calendar nav, #calendar div {
   background-color: lightgrey;
 }
 
 #interval_selection {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
 }
 
 #interval_selection h3 {
